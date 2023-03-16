@@ -91,6 +91,12 @@ class OrderManager(BaseManager):
     def update(cls):
         raise NotImplementedError(f'Method not suported for {cls.__name__}')
 
+    @classmethod
+    def drop_table(cls):
+        cls.session.query(OrderDetail).delete()
+        cls.session.query(BeverageDetail).delete()
+        super().drop_table()
+
 
 class IndexManager(BaseManager):
 
