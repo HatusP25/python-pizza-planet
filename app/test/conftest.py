@@ -10,6 +10,7 @@ from app.repositories.models import Ingredient, Order, OrderDetail, Size
 from .fixtures.ingredient import *
 from .fixtures.order import *
 from .fixtures.size import *
+from .fixtures.report import *
 from .fixtures.beverage import *
 
 
@@ -30,6 +31,8 @@ def app():
     ma.init_app(flask_app)
 
     db.create_all()
+
+    Seeder.seed()
 
     yield flask_app
 
