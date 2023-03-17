@@ -1,5 +1,4 @@
-from app.controllers.base import BaseController
-from flask import Blueprint, jsonify, request
+from flask import jsonify, request
 
 
 class BaseService:
@@ -9,31 +8,25 @@ class BaseService:
 
     def create(self):
         entity, error = self.controller.create(request.json)
-        response, status_code = self.__obtain_post_response(entity, error)
+        response, status_code = self.__obtain_response(entity, error)
         return jsonify(response), status_code
 
     def update(self):
         entity, error = self.controller.update(request.json)
-        response, status_code = self.__obtain_post_response(entity, error)
+        response, status_code = self.__obtain_response(entity, error)
         return jsonify(response), status_code
 
     def get_by_id(self, _id: int):
         entity, error = self.controller.get_by_id(_id)
-        response, status_code = self.__obtain_get_response(entity, error)
+        response, status_code = self.__obtain_response(entity, error)
         return jsonify(response), status_code
 
     def get_all(self):
         entities, error = self.controller.get_all()
-        response, status_code = self.__obtain_get_response(entities, error)
+        response, status_code = self.__obtain_response(entities, error)
         return jsonify(response), status_code
 
-    def __obtain_post_response(self, entity, error):
+    def __obtain_response(self, entity, error):
         response = entity if not error else {'error': error}
-        status_code = 200 if not error else 400
-        return response, status_code
-
-
-    def __obtain_get_response(self, entity, error):
-        response = entity if not error else {'error': error}
-        status_code = 200 if entity else 404 if not error else 400
+        status_code = 200 if not error else 400 if entity else 404
         return response, status_code
