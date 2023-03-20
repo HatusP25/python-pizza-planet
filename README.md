@@ -112,3 +112,19 @@ ext install ritwickdey.LiveServer
 ```bash
 python3 manage.py test
 ```
+
+### Seeding the database
+To seed the database with generic data you must run:
+
+```bash
+python3 manage.py seed
+```
+
+This will populate the database with 100 orders, 10 ingredients, 10 beverages and 5 sizes.
+
+If you need to drop the database tables you can run:
+
+```bash
+python3 manage.py drop
+```
+
