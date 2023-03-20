@@ -125,6 +125,6 @@ This will populate the database with 100 orders, 10 ingredients, 10 beverages an
 If you need to drop the database tables you can run:
 
 ```bash
-python3 manage.py drop
+python3 manage.py drop_tables
 ```
 
